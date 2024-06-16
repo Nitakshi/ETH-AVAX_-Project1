@@ -1,26 +1,23 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.6.12 <0.9.0;
+pragma solidity ^0.8.18;
 
-contract ErrorHandling{
+contract TemperatureConverter{
 
-    address public _owner;
-
-    constructor(){
-        _owner = msg.sender; // _owner is set to the address of the account that deploys the contract
+    function celsiusConver(int256 celsius) public pure returns(int256,int256){ //eg: celsius = 20 
+        int256 kelvin = celsius + 273; //kelvin = 20+273= 293
+        require(kelvin >= 0,"Kelvin can't be negative");
+        int256 farenheit = (celsius*9)/5 + 32; //farenheit= (20*9)/5+32 = 68
+        assert(farenheit >=- 459);
+        return(kelvin,farenheit);
     }
 
-    function Require_call() public view {
-        require(msg.sender == _owner ," Not the real owner "); // called to check if the caller is the owner
-    }
-
-    function Assert_call() public view {
-        assert(msg.sender == _owner); //for internal contract error
-    }
-     
-    function Revert_call() public view {
-        if(msg.sender != _owner){
-            revert("Caller is not an owner"); 
+    function kelvinConver(int256 kelvin) public pure returns(int256){
+        if(kelvin<0){
+            revert("Invalid temperature: Kelvin cannot be negavtive");
         }
+        int256 celsius = kelvin-273;
+        assert(celsius >= -273);
+        return celsius;
     }
-
+    
 }
