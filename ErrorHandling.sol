@@ -6,9 +6,9 @@ contract TemperatureConverter{
     function celsiusConver(int256 celsius) public pure returns(int256,int256){ //eg: celsius = 20 
         int256 kelvin = celsius + 273; //kelvin = 20+273= 293
         require(kelvin >= 0,"Kelvin can't be negative");
-        int256 farenheit = (celsius*9)/5 + 32; //farenheit= (20*9)/5+32 = 68
-        assert(farenheit >= -459);
-        return(kelvin,farenheit);
+        int256 fahrenheit  = (celsius*9)/5 + 32; //farenheit= (20*9)/5+32 = 68
+        assert(fahrenheit  >=- 459);
+        return(kelvin,fahrenheit );
     }
 
     function kelvinConver(int256 kelvin) public pure returns(int256){
