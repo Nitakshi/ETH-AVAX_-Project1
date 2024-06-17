@@ -1,14 +1,19 @@
 # Project Title
 
-Functions and Errors
+Temperature Converter Smart Contract
 
 ## Description
 
-This project is used for demonstrating different Solidity error handling techniques in Ethereum smart contracts. 
-The contract consists of a public state variable _owner , constructor used to set owner to the address of the account that deploys the contract . It also consists of three different error handling functions :
-'Require_call' function that checks if the caller is the owner of the contract using the require statement. Require statement consists of two parameters : condition to be validated and message to be displayed if the condition fails. If the condition fails, it reverts the transaction with a custom error message.
-'Assert_call' function uses the assert statement to validate an internal condition. It consists of only one parameter : condition to be validated. If the condition fails, it results in an internal contract error.
-'Revert_call' function verifies the caller's ownership and reverts the transaction with a custom error message if the condition is not met and the remaining gas is returned back to the user account.
+This project is used for demonstrating different Solidity error handling techniques in Ethereum smart contracts. This Solidity smart contract allows users to convert temperatures between Celsius, Kelvin, and Fahrenheit. It includes error handling to ensure valid temperature ranges based on physical constraints.
+The contract consists of two main functions: 
+'celsiusConverter' use to convert Celsius temperature into kelvin and fahrenheit. It takes celsius temperature as a parameter and returns temperature in Kelvin and Fahrenheit.
+'kelvinConverter' converts Kelvin temperature to Celsius. It takes Kelvin temperature as a paramater and returns temperature in Celsius.
+
+### Error Handling
+The contract uses `require`, `assert`, and `revert` statements to ensure the validity of temperature values:
+- Celsius temperatures must be above absolute zero (-273°C).
+- Kelvin temperatures cannot be negative.
+- Fahrenheit temperatures must be above absolute zero (approximately -459°F).
 
 ## Getting Started
 
@@ -21,11 +26,13 @@ Copy and paste the code provided in the github repository.
 
 ### Compiling and Deploying 
 
-To compile the contract, click on "Solidity compiler" on the left-hand sidebar. Make sure the "Compiler" option is set between >=0.6.12 <0.9.0 , and then click on the "Compile Errorhandling.sol" button or we can simply click Ctrl+S to compile the contract.
+To compile the contract, click on "Solidity compiler" on the left-hand sidebar. Make sure the "Compiler" option is set ^0.8.18 , and then click on the "Compile Errorhandling.sol" button or we can simply click Ctrl+S to compile the contract.
 
 Once it is compiled you can deploy the contract, by clicking on the "Deploy and Run Transactions" tab in the left-hand sidebar. Select the "Errorhandling.sol" contract from the dropdown menu, and then click on the "Deploy" button.
 
-Within the Deployed/Unpinned Contracts, click on the deployed contract (i.e ErrorHandling). Click on the _owner to check the address of the owner that deployed the contract. Call the contract's methods (Require_call, Assert_call, Revert_call) to observe different error handling techniques in action. From the Account section we can change the account address and again call the functions to check for an error message.
+Within the Deployed/Unpinned Contracts, click on the deployed contract (i.e ErrorHandling).
+Give Celsius temperature (should be above -273) as an input and call 'celsiusConverter' function. If input temperature is above -273 Celsius, it will return temperature in kelvin and fahrenheit, else transaction will revert to initial state and throws an error.
+Give Kelvin temperature (should not be negative) as an input and call 'kelvinConverter' function. If input temperature is above 0 Kelvin, it will return temperature in celsius, else transaction will revert to initial state and throws an error.
 
 ## Author
 
