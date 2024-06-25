@@ -1,62 +1,38 @@
 # Project Title
 
-Integrating Smart Contract
+Temperature Converter Smart Contract
 
 ## Description
 
-This project contains a Solidity smart contract for managing an academic assessment system. The contract allows the owner to add courses with associated credits and grades, and calculate the GPA (Grade Point Average) based on the added courses.
+This project is used for demonstrating different Solidity error handling techniques in Ethereum smart contracts. This Solidity smart contract allows users to convert temperatures between Celsius, Kelvin, and Fahrenheit. It includes error handling to ensure valid temperature ranges based on physical constraints.
+The contract consists of two main functions: 
+- 'celsiusConverter' use to convert Celsius temperature into kelvin and fahrenheit. It takes celsius temperature as a parameter and returns temperature in Kelvin and Fahrenheit.
+- 'kelvinConverter' converts Kelvin temperature to Celsius. It takes Kelvin temperature as a paramater and returns temperature in Celsius.
 
-### Features
+### Error Handling
+The contract uses `require`, `assert`, and `revert` statements to ensure the validity of temperature values:
+- Celsius temperatures must be above absolute zero (-273°C).
+- Kelvin temperatures cannot be negative.
+- Fahrenheit temperatures must be above absolute zero (approximately -459°F).
 
-#### Assessment.sol
-
-- `address public owner`: The owner of the contract.
-  
-- `uint256 public totalCredits`: Total number of credits added.
-  
-- `uint256 public totalGradePoints`: Total grade points accumulated.
-  
-- `function addCourse(string memory _courseName, uint256 _credits, Grade _grade)`: Adds a course with specified credits and grade.
-  
-- `function calculateGPA()`: Calculates the GPA.
-  
-- `function getGPA()`: Emits the GPA calculation event.
-  
-- `function getNumberOfCourses()`: Returns the number of courses added.
-  
 ## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/)
-  
-- [Hardhat](https://hardhat.org/)
 
 ### Executing program
 
-To run this project locally, follow these steps:
+To run this program you can use Remix IDE.
+- To get started, go to the Remix website at https://remix.ethereum.org/. 
+- Click on Create new file and save a file as .sol extension (eg. ErrorHandling.sol). 
+- Copy and paste the code provided in the github repository.
 
-- Clone the repository
-  
-- Install the necessary dependencies:
-  
-  `npm i`
-  
-- In the second terminal, run the local Hardhat node:
-  
-  `npx hardhat node`
-  
-- In the third terminal, deploy the contract on a local Hardhat network:
-  
-  `npx hardhat run --network localhost scripts/deploy.js`
-  
-- Start the front-end application:
+### Compiling and Deploying 
 
-  `npm run dev`
+- To compile the contract, click on "Solidity compiler" on the left-hand sidebar. Make sure the "Compiler" option is set ^0.8.18 , and then click on the "Compile Errorhandling.sol" button or we can simply click Ctrl+S to compile the contract.
 
-- After completing the steps above, the project should be running on your local machine. You can typically access it at http://localhost:3000/.
+- Once it is compiled you can deploy the contract, by clicking on the "Deploy and Run Transactions" tab in the left-hand sidebar. Select the "Errorhandling.sol" contract from the dropdown menu, and then click on the "Deploy" button.
 
--  Connect your MetaMask wallet. Add course name, credit and obtained grade. Click on 'Add course' button and then click on 'Get GPA' button to get calculated GPA.
+- Within the Deployed/Unpinned Contracts, click on the deployed contract (i.e ErrorHandling).
+- Give Celsius temperature (should be above -273) as an input and call 'celsiusConverter' function. If input temperature is above -273 Celsius, it will return temperature in kelvin and fahrenheit, else transaction will revert to initial state and throws an error.
+- Give Kelvin temperature (should not be negative) as an input and call 'kelvinConverter' function. If input temperature is above 0 Kelvin, it will return temperature in celsius, else transaction will revert to initial state and throws an error.
 
 ## Author
 
